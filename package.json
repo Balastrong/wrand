@@ -9,7 +9,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json",
-    "prepare": "npm run build && denoify",
+    "prepare": "husky install",
     "prepublishOnly": "npm test && npm run lint",
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src deno_lib",
@@ -39,6 +39,7 @@
   "devDependencies": {
     "@types/jest": "^28.1.5",
     "denoify": "^0.11.4",
+    "husky": "^8.0.1",
     "jest": "^28.1.3",
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.6",

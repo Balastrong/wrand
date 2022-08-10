@@ -37,10 +37,15 @@ yarn add wrand
 
 ### Deno
 
-If you use Deno, you can just import the package from [deno.land/x](https://deno.land/x/wrand)
+If you use Deno, you can just import what you need from [deno.land/x](https://deno.land/x/wrand)
 
 ```ts
-import { wrand } from "https://deno.land/x/wrand/mod.ts";
+import {
+  RandomPicker,
+  pick,
+  pickMany,
+  flatten,
+} from "https://deno.land/x/wrand/mod.ts";
 ```
 
 ## Usage

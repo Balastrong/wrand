@@ -1,5 +1,5 @@
-export type Item<T> = {
-  item: T;
+export type WeightedItem<T> = {
+  original: T;
   weight: number;
 };
 
