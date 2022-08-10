@@ -32,4 +32,5 @@ jobs:
     - uses: actions/checkout@master
     - uses: codecov/codecov-action@v3
       with:
+        files: ./coverage/clover.xml
         verbose: true
