@@ -3,7 +3,16 @@
 Extract one or more random elements from a weighted array.
 
 ```ts
-//TODO ADD A DEMO HERE
+const items = [
+  { original: "Bronze", weight: 20 },
+  { original: "Silver", weight: 10 },
+  { original: "Gold", weight: 3 },
+  { original: "Platinum", weight: 1 },
+];
+
+const picker = new RandomPicker(items);
+
+const result = picker.pick();
 ```
 
 ## Table of contents
@@ -12,6 +21,7 @@ Extract one or more random elements from a weighted array.
   - [Node](#node)
   - [Deno](#deno)
 - [Usage](#usage)
+- [Roadmap](#roadmap)
 
 ## Installation
 
@@ -34,3 +44,15 @@ import { wrand } from "https://deno.land/x/wrand/mod.ts";
 ```
 
 ## Usage
+
+// TODO
+
+## Roadmap
+
+- [x] RandomPicker class
+  - [ ] Multiple picks with option for duplicates
+- [x] Standalone methods
+  - [x] pick
+  - [x] pickMany
+  - [x] flatten
+- [ ] Allow for custom random function

@@ -1,17 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "lib": ["DOM", "ES5", "ES6", "ESNext"],
+    "esModuleInterop": true,
+    "target": "ES2022",
+    "module": "ES2020",
     "declaration": true,
     "outDir": "./lib",
     "strict": true
   },
   "include": ["src"],
-  "exclude": [
-    "node_modules",
-    "**/__tests__/*",
-    "deno_dist/",
-    "deno_lib",
-    "src/**/*.deno.ts"
-  ]
+  "exclude": ["node_modules", "deno_dist/", "deno_lib", "src/**/*.deno.ts"]
 }
