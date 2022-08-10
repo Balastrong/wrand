@@ -1,0 +1,51 @@
+{
+  "name": "wrand",
+  "version": "0.0.1",
+  "description": "Extract one or more random elements from a weighted array.",
+  "main": "index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --config jestconfig.json",
+    "prepare": "npm run build && denoify",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src deno_lib",
+    "postversion": "git push && git push --tags",
+    "denoify": "denoify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Balastrong/wrand.git"
+  },
+  "keywords": [
+    "normalize",
+    "duration",
+    "time",
+    "units"
+  ],
+  "author": "Leonardo Montini",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Balastrong/wrand/issues"
+  },
+  "homepage": "https://github.com/Balastrong/wrand#readme",
+  "files": [
+    "lib/**/*"
+  ],
+  "devDependencies": {
+    "@types/jest": "^28.1.5",
+    "denoify": "^0.11.4",
+    "jest": "^28.1.3",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.6",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.7.4"
+  },
+  "denoify": {
+    "index": "src/index.ts"
+  }
+}
