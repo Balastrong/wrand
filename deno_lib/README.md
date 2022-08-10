@@ -1,3 +1,10 @@
+<p align="center">
+  <a href="https://github.com/Balastrong/wrand/actions/workflows/testing.yml"><img src="https://github.com/Balastrong/wrand/actions/workflows/testing.yml/badge.svg" alt="CI status" /></a>
+  <a href="https://www.npmjs.com/package/wrand"><img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/Balastrong/wrand"></a>
+  <a href="https://chrome.google.com/webstore/detail/wrand/ncibjlmfhjcjnphnpphgphbflpdpliei" rel="nofollow"><img src="https://img.shields.io/github/stars/Balastrong/wrand" alt="Stars"></a>
+  <a href="https://twitter.com/Balastrong" rel="nofollow"><img src="https://img.shields.io/badge/created%20by-@Balastrong-4BBAAB.svg" alt="created by Leonardo Montini"></a>
+</p>
+
 # wrand
 
 Extract one or more random elements from a weighted array.
@@ -15,6 +22,8 @@ const picker = new RandomPicker(items);
 const result = picker.pick();
 ```
 
+⭐️ If you like this library, don't forget to give it a star! ⭐️
+
 ## Table of contents
 
 - [Installation](#installation)
@@ -24,6 +33,7 @@ const result = picker.pick();
   - [RandomPicker object](#randompicker-object)
   - [Standalone methods](#standalone-methods)
 - [Roadmap](#roadmap)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -98,12 +108,20 @@ const result = pick(items);
 
 ## Roadmap
 
+This is a high-level roadmap. You can find more in the open issues.
+
 - RandomPicker class
   - [ ] Multiple picks with option for duplicates
+  - [ ] Handle duplicates
 - Standalone methods
   - [x] pick
   - [x] pickMany
   - [x] flatten
 - Extra features
+  - [x] Add badges to the documentation
   - [ ] Allow for custom random function
-  - [ ] Add badges to the documentation
+  - [ ] Keep coverage high and not forget edge cases
+
+## Contributing
+
+Contributions of any kind are welcome! You can find more info on [CONTRIBUTING.md](./CONTRIBUTING.md).
