@@ -56,7 +56,7 @@ _Hint:_ The [test.ts](./src/__tests__/test.ts) file contains all possible exampl
 
 ### RandomPicker object
 
-You can use the RandomPicker object to pick one or more random elements from a weighted array.
+You can use the RandomPicker object to pick one or more random elements from a weighted array. The array can be any type, objects are fine.
 
 The best usage here is if you need to pick many items at different moments and you don't want to recreate the object every time.
 
@@ -98,10 +98,12 @@ const result = pick(items);
 
 ## Roadmap
 
-- [x] RandomPicker class
+- RandomPicker class
   - [ ] Multiple picks with option for duplicates
-- [x] Standalone methods
+- Standalone methods
   - [x] pick
   - [x] pickMany
   - [x] flatten
-- [ ] Allow for custom random function
+- Extra features
+  - [ ] Allow for custom random function
+  - [ ] Add badges to the documentation

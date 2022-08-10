@@ -56,6 +56,21 @@ describe("RandomPicker", () => {
       picked.every((p) => items.some((i) => i.original === p))
     ).toBeTruthy();
   });
+
+  it("works with objects", () => {
+    const objectItems = [
+      { original: { name: "Bronze" }, weight: 20 },
+      { original: { name: "Silver" }, weight: 10 },
+      { original: { name: "Gold" }, weight: 3 },
+      { original: { name: "Platinum" }, weight: 1 },
+    ];
+    const picker = new RandomPicker(objectItems);
+
+    const pickedItem = picker.pick();
+    expect(
+      objectItems.some((item) => item.original.name === pickedItem.name)
+    ).toBeTruthy();
+  });
 });
 
 describe("pick", () => {
