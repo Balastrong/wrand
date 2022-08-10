@@ -20,7 +20,9 @@ export class RandomPicker<T> {
     }
 
     /* istanbul ignore next */
-    throw new Error("This should never happen");
+    throw new Error(
+      "No idea why this happened, get in touch with the wrand developer!"
+    );
   }
 
   pickMany(amount: number): T[] {
@@ -55,17 +57,17 @@ export class RandomPicker<T> {
 
   private validate(items: WeightedItem<T>[]) {
     if (items.length === 0) {
-      throw new Error("Items list is empty");
+      throw new Error("Items list is empty!");
     }
 
     const set = new Set();
     for (const item of items) {
       if (item.weight <= 0) {
-        throw new Error("All weights must be positive");
+        throw new Error("All weights must be positive!");
       }
 
       if (set.has(item.original)) {
-        throw new Error("Items must be unique");
+        throw new Error("Items must be unique!");
       }
       set.add(item.original);
     }
