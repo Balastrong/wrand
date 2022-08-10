@@ -21,10 +21,11 @@
     "url": "git+https://github.com/Balastrong/wrand.git"
   },
   "keywords": [
-    "normalize",
-    "duration",
-    "time",
-    "units"
+    "random",
+    "weighted",
+    "loot",
+    "table",
+    "gacha"
   ],
   "author": "Leonardo Montini",
   "license": "MIT",

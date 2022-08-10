@@ -30,7 +30,7 @@ yarn add wrand
 If you use Deno, you can just import the package from [deno.land/x](https://deno.land/x/wrand)
 
 ```ts
-import { normalizeDuration } from "https://deno.land/x/wrand/mod.ts";
+import { wrand } from "https://deno.land/x/wrand/mod.ts";
 ```
 
 ## Usage
