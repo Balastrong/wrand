@@ -24,6 +24,7 @@ const result = picker.pick();
   - [RandomPicker object](#randompicker-object)
   - [Standalone methods](#standalone-methods)
 - [Roadmap](#roadmap)
+- [Contributing](#contributing)
 
 ## Installation
 
@@ -98,8 +99,11 @@ const result = pick(items);
 
 ## Roadmap
 
+This is a high-level roadmap. You can find more in the open issues.
+
 - RandomPicker class
   - [ ] Multiple picks with option for duplicates
+  - [ ] Handle duplicates
 - Standalone methods
   - [x] pick
   - [x] pickMany
@@ -107,3 +111,8 @@ const result = pick(items);
 - Extra features
   - [ ] Allow for custom random function
   - [ ] Add badges to the documentation
+  - [ ] Keep coverage high and not forget edge cases
+
+## Contributing
+
+Contributions of any kind are welcome! You can find more info on [CONTRIBUTING.md](./CONTRIBUTING.md).
