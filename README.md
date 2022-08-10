@@ -15,6 +15,8 @@ const picker = new RandomPicker(items);
 const result = picker.pick();
 ```
 
+⭐️ If you like this library, don't forget to give it a star! ⭐️
+
 ## Table of contents
 
 - [Installation](#installation)
