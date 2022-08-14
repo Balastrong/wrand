@@ -63,11 +63,13 @@ export class RandomPicker<T> {
     const set = new Set();
     for (const item of items) {
       if (item.weight <= 0) {
-        throw new Error("All weights must be positive!");
+        throw new Error(
+          `All weights must be positive! ${item.original} has weight ${item.weight}`
+        );
       }
 
       if (set.has(item.original)) {
-        throw new Error("Items must be unique!");
+        throw new Error(`Items must be unique! ${item.original} is duplicate!`);
       }
       set.add(item.original);
     }
