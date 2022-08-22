@@ -1,10 +1,10 @@
-import { WeightedItem } from "./types";
+import { RandomFn, WeightedItem } from "./types";
 
 export class RandomPicker<T> {
   private totalWeight: number = 0;
   private items: WeightedItem<T>[] = [];
 
-  constructor(items: WeightedItem<T>[], private next?: () => number) {
+  constructor(items: WeightedItem<T>[], private next?: RandomFn) {
     this.set(items);
   }
 
