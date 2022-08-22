@@ -71,6 +71,34 @@ describe("RandomPicker", () => {
       objectItems.some((item) => item.original.name === pickedItem.name)
     ).toBeTruthy();
   });
+
+  it("uses the custom random generator when passed", () => {
+    const pickerAlwaysFirst = new RandomPicker(items, () => 0);
+    const picked1 = pickerAlwaysFirst.pick();
+    const picked2 = pickerAlwaysFirst.pick();
+    const picked3 = pickerAlwaysFirst.pick();
+
+    const testFirstItem = items.at(0)?.original;
+    expect(
+      [picked1, picked2, picked3].every((item) => item === testFirstItem)
+    ).toBeTruthy();
+
+    const pickerAlwaysLast = new RandomPicker(items, () => 1);
+    const picked4 = pickerAlwaysLast.pick();
+    const picked5 = pickerAlwaysLast.pick();
+    const picked6 = pickerAlwaysLast.pick();
+
+    const testLastItem = items.at(-1)?.original;
+    expect(
+      [picked4, picked5, picked6].every((item) => item === testLastItem)
+    ).toBeTruthy();
+  });
+
+  it("should not allow random generator going outside boundaries of [0-1]", () => {
+    const picker = new RandomPicker(items, () => 5);
+
+    expect(() => picker.pick()).toThrow();
+  });
 });
 
 describe("pick", () => {

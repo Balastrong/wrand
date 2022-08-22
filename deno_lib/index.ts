@@ -1,11 +1,14 @@
 import { RandomPicker } from "./randomPicker.ts";
-import { WeightedItem } from "./types.ts";
+import { RandomFn, WeightedItem } from "./types.ts";
 
-export const pick = <T>(items: WeightedItem<T>[]) =>
-  new RandomPicker(items).pick();
+export const pick = <T>(items: WeightedItem<T>[], next?: RandomFn) =>
+  new RandomPicker(items, next).pick();
 
-export const pickMany = <T>(items: WeightedItem<T>[], amount: number) =>
-  new RandomPicker(items).pickMany(amount);
+export const pickMany = <T>(
+  items: WeightedItem<T>[],
+  amount: number,
+  next?: RandomFn
+) => new RandomPicker(items, next).pickMany(amount);
 
 export const flatten = <T>(items: WeightedItem<T>[]): WeightedItem<T>[] => {
   const map = new Map<T, number>();

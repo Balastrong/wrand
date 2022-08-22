@@ -1,20 +1,20 @@
-import { WeightedItem } from "./types";
+import { RandomFn, WeightedItem } from "./types";
 
 export class RandomPicker<T> {
   private totalWeight: number = 0;
   private items: WeightedItem<T>[] = [];
 
-  constructor(items: WeightedItem<T>[]) {
+  constructor(items: WeightedItem<T>[], private next?: RandomFn) {
     this.set(items);
   }
 
   pick(): T {
-    const random = Math.random() * this.totalWeight;
+    const random = this.safeNext() * this.totalWeight;
     let currentWeight = 0;
 
     for (const item of this.items) {
       currentWeight += item.weight;
-      if (random < currentWeight) {
+      if (random <= currentWeight) {
         return item.original;
       }
     }
@@ -77,5 +77,16 @@ export class RandomPicker<T> {
 
   private updateTotalWeight(): void {
     this.totalWeight = this.items.reduce((acc, item) => acc + item.weight, 0);
+  }
+
+  private safeNext(): number {
+    const random = this.next ? this.next() : Math.random();
+    if (random < 0 || random > 1) {
+      throw new Error(
+        `Invalid random number generated, value must be between 0 and 1, received ${random} instead!`
+      );
+    }
+
+    return random;
   }
 }
