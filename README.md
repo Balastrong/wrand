@@ -3,6 +3,7 @@
   <a href="https://www.npmjs.com/package/wrand"><img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/Balastrong/wrand"></a>
   <a href="https://chrome.google.com/webstore/detail/wrand/ncibjlmfhjcjnphnpphgphbflpdpliei" rel="nofollow"><img src="https://img.shields.io/github/stars/Balastrong/wrand" alt="Stars"></a>
   <a href="https://twitter.com/Balastrong" rel="nofollow"><img src="https://img.shields.io/badge/created%20by-@Balastrong-4BBAAB.svg" alt="created by Leonardo Montini"></a>
+  <a href="https://youtu.be/jNBw9_qNgmo" rel="nofollow"><img src="https://img.shields.io/badge/making%20of-YouTube%20Video-F00.svg" alt="Making of: YouTube"></a>
 </p>
 
 # wrand

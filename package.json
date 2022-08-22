@@ -1,6 +1,6 @@
 {
   "name": "wrand",
-  "version": "0.0.1",
+  "version": "1.0.3",
   "description": "Extract one or more random elements from a weighted array.",
   "main": "index.js",
   "types": "lib/index.d.ts",
