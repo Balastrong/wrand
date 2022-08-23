@@ -1,10 +1,10 @@
-import { RandomFn, WeightedItem } from "./types.ts";
+import { Options, RandomFn, WeightedItem } from "./types.ts";
 
 export class RandomPicker<T> {
   private totalWeight: number = 0;
   private items: WeightedItem<T>[] = [];
 
-  constructor(items: WeightedItem<T>[], private next?: RandomFn) {
+  constructor(items: WeightedItem<T>[], private options?: Options) {
     this.set(items);
   }
 
@@ -80,7 +80,7 @@ export class RandomPicker<T> {
   }
 
   private safeNext(): number {
-    const random = this.next ? this.next() : Math.random();
+    const random = this.options?.next ? this.options.next() : Math.random();
     if (random < 0 || random > 1) {
       throw new Error(
         `Invalid random number generated, value must be between 0 and 1, received ${random} instead!`

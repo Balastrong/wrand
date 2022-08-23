@@ -3,4 +3,9 @@ export type WeightedItem<T> = {
   weight: number;
 };
 
+export type Options = {
+  next?: RandomFn;
+  removeOnPick?: boolean;
+};
+
 export type RandomFn = () => number;
