@@ -1,6 +1,8 @@
 import { RandomPicker } from "./randomPicker.ts";
 import { RandomFn, WeightedItem } from "./types.ts";
 
+export { RandomPicker };
+
 export const pick = <T>(items: WeightedItem<T>[], next?: RandomFn) =>
   new RandomPicker(items, next).pick();
 
