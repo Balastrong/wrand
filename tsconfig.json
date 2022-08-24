@@ -6,7 +6,8 @@
     "module": "ES2020",
     "declaration": true,
     "outDir": "./lib",
-    "strict": true
+    "strict": true,
+    "moduleResolution": "node"
   },
   "include": ["src"],
   "exclude": ["node_modules", "deno_dist/", "deno_lib", "src/**/*.deno.ts"]

@@ -1,6 +1,6 @@
 {
   "name": "wrand",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Extract one or more random elements from a weighted array.",
   "main": "index.js",
   "types": "lib/index.d.ts",
@@ -11,8 +11,7 @@
     "lint": "tslint -p tsconfig.json",
     "test": "jest --config jestconfig.json",
     "prepare": "husky install",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
+    "prepublishOnly": "npm test && npm run lint && npm run build",
     "version": "npm run format && git add -A src deno_lib",
     "postversion": "git push && git push --tags",
     "denoify": "denoify"
