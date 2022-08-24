@@ -15,14 +15,22 @@ export class RandomPicker<T> {
     for (const item of this.items) {
       currentWeight += item.weight;
       if (random <= currentWeight) {
+        if (this.options?.removeOnPick) {
+          this.internalSet(this.items.filter((i) => i !== item));
+        }
+
         return item.original;
       }
     }
 
     /* istanbul ignore next */
-    throw new Error(
-      "No idea why this happened, get in touch with the wrand developer!"
-    );
+    if (this.items.length > 0) {
+      throw new Error(
+        "No idea why this happened, get in touch with the wrand developer!"
+      );
+    } else {
+      throw new Error("The list is empty!");
+    }
   }
 
   pickMany(amount: number): T[] {
@@ -35,8 +43,7 @@ export class RandomPicker<T> {
 
   set(items: WeightedItem<T>[]) {
     this.validate(items);
-    this.items = items;
-    this.updateTotalWeight();
+    this.internalSet(items);
   }
 
   getItems(): T[] {
@@ -88,5 +95,10 @@ export class RandomPicker<T> {
     }
 
     return random;
+  }
+
+  private internalSet(items: WeightedItem<T>[]) {
+    this.items = items;
+    this.updateTotalWeight();
   }
 }

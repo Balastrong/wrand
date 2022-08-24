@@ -99,6 +99,19 @@ describe("RandomPicker", () => {
 
     expect(() => picker.pick()).toThrow();
   });
+
+  it("should remove items if flag is enabled", () => {
+    const picker = new RandomPicker(items, { removeOnPick: true });
+
+    expect(picker.getCount()).toBe(4);
+    picker.pick();
+    expect(picker.getCount()).toBe(3);
+    picker.pickMany(2);
+    expect(picker.getCount()).toBe(1);
+    picker.pick();
+    expect(picker.getCount()).toBe(0);
+    expect(() => picker.pick()).toThrow();
+  });
 });
 
 describe("pick", () => {
