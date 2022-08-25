@@ -73,7 +73,7 @@ describe("RandomPicker", () => {
   });
 
   it("uses the custom random generator when passed", () => {
-    const pickerAlwaysFirst = new RandomPicker(items, () => 0);
+    const pickerAlwaysFirst = new RandomPicker(items, { next: () => 0 });
     const picked1 = pickerAlwaysFirst.pick();
     const picked2 = pickerAlwaysFirst.pick();
     const picked3 = pickerAlwaysFirst.pick();
@@ -83,7 +83,7 @@ describe("RandomPicker", () => {
       [picked1, picked2, picked3].every((item) => item === testFirstItem)
     ).toBeTruthy();
 
-    const pickerAlwaysLast = new RandomPicker(items, () => 1);
+    const pickerAlwaysLast = new RandomPicker(items, { next: () => 1 });
     const picked4 = pickerAlwaysLast.pick();
     const picked5 = pickerAlwaysLast.pick();
     const picked6 = pickerAlwaysLast.pick();
@@ -95,8 +95,21 @@ describe("RandomPicker", () => {
   });
 
   it("should not allow random generator going outside boundaries of [0-1]", () => {
-    const picker = new RandomPicker(items, () => 5);
+    const picker = new RandomPicker(items, { next: () => 5 });
 
+    expect(() => picker.pick()).toThrow();
+  });
+
+  it("should remove items if flag is enabled", () => {
+    const picker = new RandomPicker(items, { removeOnPick: true });
+
+    expect(picker.getCount()).toBe(4);
+    picker.pick();
+    expect(picker.getCount()).toBe(3);
+    picker.pickMany(2);
+    expect(picker.getCount()).toBe(1);
+    picker.pick();
+    expect(picker.getCount()).toBe(0);
     expect(() => picker.pick()).toThrow();
   });
 });

@@ -1,10 +1,10 @@
-import { RandomFn, WeightedItem } from "./types.ts";
+import { Options, RandomFn, WeightedItem } from "./types.ts";
 
 export class RandomPicker<T> {
   private totalWeight: number = 0;
   private items: WeightedItem<T>[] = [];
 
-  constructor(items: WeightedItem<T>[], private next?: RandomFn) {
+  constructor(items: WeightedItem<T>[], private options?: Options) {
     this.set(items);
   }
 
@@ -15,14 +15,22 @@ export class RandomPicker<T> {
     for (const item of this.items) {
       currentWeight += item.weight;
       if (random <= currentWeight) {
+        if (this.options?.removeOnPick) {
+          this.internalSet(this.items.filter((i) => i !== item));
+        }
+
         return item.original;
       }
     }
 
     /* istanbul ignore next */
-    throw new Error(
-      "No idea why this happened, get in touch with the wrand developer!"
-    );
+    if (this.items.length > 0) {
+      throw new Error(
+        "No idea why this happened, get in touch with the wrand developer!"
+      );
+    } else {
+      throw new Error("The list is empty!");
+    }
   }
 
   pickMany(amount: number): T[] {
@@ -35,8 +43,7 @@ export class RandomPicker<T> {
 
   set(items: WeightedItem<T>[]) {
     this.validate(items);
-    this.items = items;
-    this.updateTotalWeight();
+    this.internalSet(items);
   }
 
   getItems(): T[] {
@@ -80,7 +87,7 @@ export class RandomPicker<T> {
   }
 
   private safeNext(): number {
-    const random = this.next ? this.next() : Math.random();
+    const random = this.options?.next ? this.options.next() : Math.random();
     if (random < 0 || random > 1) {
       throw new Error(
         `Invalid random number generated, value must be between 0 and 1, received ${random} instead!`
@@ -88,5 +95,10 @@ export class RandomPicker<T> {
     }
 
     return random;
+  }
+
+  private internalSet(items: WeightedItem<T>[]) {
+    this.items = items;
+    this.updateTotalWeight();
   }
 }
