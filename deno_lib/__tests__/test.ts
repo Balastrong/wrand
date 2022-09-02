@@ -129,7 +129,6 @@ describe("pickMany", () => {
       picked.every((p) => items.some((i) => i.original === p))
     ).toBeTruthy();
   });
-
 });
 
 describe("flatten", () => {
@@ -146,9 +145,9 @@ describe("flatten", () => {
 describe("pickManyDistinct", () => {
   it("should pick many distinct items", () => {
     const picked = pickManyDistinct(items, 3);
-    const pickedUnique = new Set(picked)
+    const pickedUnique = new Set(picked);
     expect(picked.length).toBe(3);
-    expect(pickedUnique.size).toBe(3)
+    expect(pickedUnique.size).toBe(3);
     expect(
       picked.every((p) => items.some((i) => i.original === p))
     ).toBeTruthy();

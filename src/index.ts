@@ -24,4 +24,4 @@ export const pickManyDistinct = <T>(
   items: WeightedItem<T>[],
   amount: number,
   options?: Options
-) => new RandomPicker(items,options).pickManyDistinct(amount)
+) => new RandomPicker(items, options).pickManyDistinct(amount);

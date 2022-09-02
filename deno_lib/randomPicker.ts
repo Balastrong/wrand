@@ -46,7 +46,7 @@ export class RandomPicker<T> {
    * If the number of items required is more or equal to the length of weighted array, it will return all elements in array
    * @param amount - positive number of items to be picked, if more or equal to the length of the array, returns all items
    * @returns array of picked items
-   * @example 
+   * @example
    * const items = [
    * { original: "Bronze", weight: 20 },
    * { original: "Silver", weight: 10 },
@@ -65,13 +65,16 @@ export class RandomPicker<T> {
    * console.log(picked8.length) // 4
    * console.log(picked8) // ["Bronze", "Silver", "Gold", "Platinum"]
    */
-  pickManyDistinct(amount: number):T[] {
-    if (amount < 0) throw new Error("number of items to be picked should be a positive integer")
-    if(amount >= this.items.length) return this.items.map((i) => i.original)
-    const items:T[] = []
-    const copyOfItems = [...this.items]
+  pickManyDistinct(amount: number): T[] {
+    if (amount < 0)
+      throw new Error(
+        "number of items to be picked should be a positive integer"
+      );
+    if (amount >= this.items.length) return this.items.map((i) => i.original);
+    const items: T[] = [];
+    const copyOfItems = [...this.items];
     for (let i = 0; i < amount; i++) {
-      const indexToPick = this.indexToPick(copyOfItems)
+      const indexToPick = this.indexToPick(copyOfItems);
       items.push(copyOfItems[indexToPick].original);
       copyOfItems.splice(indexToPick, 1);
     }
@@ -139,17 +142,18 @@ export class RandomPicker<T> {
     this.updateTotalWeight();
   }
 
-  private indexToPick(items=this.items):number {
-    const random = this.safeNext() * items.reduce((acc, item) => acc + item.weight, 0);
+  private indexToPick(items = this.items): number {
+    const random =
+      this.safeNext() * items.reduce((acc, item) => acc + item.weight, 0);
     let currentWeight = 0;
-    let index = -1
+    let index = -1;
 
     for (const [inx, item] of items.entries()) {
       currentWeight += item.weight;
       if (random <= currentWeight) {
-        index = inx
+        index = inx;
       }
     }
-    return index
+    return index;
   }
 }
