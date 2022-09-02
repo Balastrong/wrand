@@ -1,4 +1,4 @@
-import { flatten, pick, pickMany } from "../index.ts";
+import { flatten, pick, pickMany, pickManyDistinct } from "../index.ts";
 import { RandomPicker } from "../randomPicker.ts";
 
 const items = [
@@ -124,12 +124,12 @@ describe("pick", () => {
 describe("pickMany", () => {
   it("should pick many", () => {
     const picked = pickMany(items, 3);
-
     expect(picked.length).toBe(3);
     expect(
       picked.every((p) => items.some((i) => i.original === p))
     ).toBeTruthy();
   });
+
 });
 
 describe("flatten", () => {
@@ -140,5 +140,17 @@ describe("flatten", () => {
   expect(flat.find((i) => i.original === "Gold")).toStrictEqual({
     original: "Gold",
     weight: 4,
+  });
+});
+
+describe("pickManyDistinct", () => {
+  it("should pick many distinct items", () => {
+    const picked = pickManyDistinct(items, 3);
+    const pickedUnique = new Set(picked)
+    expect(picked.length).toBe(3);
+    expect(pickedUnique.size).toBe(3)
+    expect(
+      picked.every((p) => items.some((i) => i.original === p))
+    ).toBeTruthy();
   });
 });
