@@ -144,12 +144,31 @@ describe("flatten", () => {
 
 describe("pickManyDistinct", () => {
   it("should pick many distinct items", () => {
-    const picked = pickManyDistinct(items, 3);
+    const picker = new RandomPicker(items);
+    const picked = picker.pickManyDistinct(2);
     const pickedUnique = new Set(picked);
-    expect(picked.length).toBe(3);
-    expect(pickedUnique.size).toBe(3);
+    expect(pickedUnique.size).toBe(2);
+    expect(picked.length).toBe(2);
     expect(
       picked.every((p) => items.some((i) => i.original === p))
     ).toBeTruthy();
+    expect(picker.getCount()).toBe(items.length);
+  });
+  it("should return all items when amount picked is same as array length", () => {
+    const picker = new RandomPicker(items);
+    const picked = picker.pickManyDistinct(items.length);
+    const pickedUnique = new Set(picked);
+    expect(picked.length).toBe(items.length);
+    expect(pickedUnique.size).toBe(items.length);
+    expect(
+      picked.every((p) => items.some((i) => i.original === p))
+    ).toBeTruthy();
+    expect(picker.getCount()).toBe(items.length);
+  });
+  it("should throw error when picked more items than array length", () => {
+    expect(() => pickManyDistinct(items, 8)).toThrow();
+  });
+  it("should not allow negative numbers to be picked", () => {
+    expect(() => pickManyDistinct(items, -1)).toThrow();
   });
 });

@@ -62,22 +62,26 @@ export class RandomPicker<T> {
    * console.log(picked4.length) // 4
    * console.log(picked4) // ["Bronze", "Silver", "Gold", "Platinum"]
    * const picked8 = pickerAlwaysLast.pickManyDistinct(8);
-   * console.log(picked8.length) // 4
-   * console.log(picked8) // ["Bronze", "Silver", "Gold", "Platinum"]
+   * console.log(picked8) // throws error number of items cannot be more than length of the array
    */
   pickManyDistinct(amount: number): T[] {
     if (amount < 0)
       throw new Error(
         "number of items to be picked should be a positive integer"
       );
-    if (amount >= this.items.length) return this.items.map((i) => i.original);
+    if (amount > this.items.length)
+      throw new Error(
+        "number of items cannot be more than length of the array"
+      );
+    if (amount === this.items.length) return this.items.map((i) => i.original);
     const items: T[] = [];
     const copyOfItems = [...this.items];
     for (let i = 0; i < amount; i++) {
-      const indexToPick = this.indexToPick(copyOfItems);
-      items.push(copyOfItems[indexToPick].original);
-      copyOfItems.splice(indexToPick, 1);
+      const picked = this.pick();
+      items.push(picked);
+      this.set(this.items.filter((i) => i.original != picked));
     }
+    this.set(copyOfItems);
     return items;
   }
 
@@ -140,20 +144,5 @@ export class RandomPicker<T> {
   private internalSet(items: WeightedItem<T>[]) {
     this.items = items;
     this.updateTotalWeight();
-  }
-
-  private indexToPick(items = this.items): number {
-    const random =
-      this.safeNext() * items.reduce((acc, item) => acc + item.weight, 0);
-    let currentWeight = 0;
-    let index = -1;
-
-    for (const [inx, item] of items.entries()) {
-      currentWeight += item.weight;
-      if (random <= currentWeight) {
-        index = inx;
-      }
-    }
-    return index;
   }
 }
