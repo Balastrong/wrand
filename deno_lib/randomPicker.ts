@@ -79,7 +79,7 @@ export class RandomPicker<T> {
     for (let i = 0; i < amount; i++) {
       const picked = this.pick();
       items.push(picked);
-      this.set(this.items.filter((i) => i.original != picked));
+      this.set(this.items.filter((item) => item.original !== picked));
     }
     this.set(copyOfItems);
     return items;
