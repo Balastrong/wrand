@@ -1,4 +1,4 @@
-import { flatten, pick, pickMany } from "../index.ts";
+import { flatten, pick, pickMany, pickManyDistinct } from "../index.ts";
 import { RandomPicker } from "../randomPicker.ts";
 
 const items = [
@@ -124,7 +124,6 @@ describe("pick", () => {
 describe("pickMany", () => {
   it("should pick many", () => {
     const picked = pickMany(items, 3);
-
     expect(picked.length).toBe(3);
     expect(
       picked.every((p) => items.some((i) => i.original === p))
@@ -140,5 +139,36 @@ describe("flatten", () => {
   expect(flat.find((i) => i.original === "Gold")).toStrictEqual({
     original: "Gold",
     weight: 4,
+  });
+});
+
+describe("pickManyDistinct", () => {
+  it("should pick many distinct items", () => {
+    const picker = new RandomPicker(items);
+    const picked = picker.pickManyDistinct(2);
+    const pickedUnique = new Set(picked);
+    expect(pickedUnique.size).toBe(2);
+    expect(picked.length).toBe(2);
+    expect(
+      picked.every((p) => items.some((i) => i.original === p))
+    ).toBeTruthy();
+    expect(picker.getCount()).toBe(items.length);
+  });
+  it("should return all items when amount picked is same as array length", () => {
+    const picker = new RandomPicker(items);
+    const picked = picker.pickManyDistinct(items.length);
+    const pickedUnique = new Set(picked);
+    expect(picked.length).toBe(items.length);
+    expect(pickedUnique.size).toBe(items.length);
+    expect(
+      picked.every((p) => items.some((i) => i.original === p))
+    ).toBeTruthy();
+    expect(picker.getCount()).toBe(items.length);
+  });
+  it("should throw error when picked more items than array length", () => {
+    expect(() => pickManyDistinct(items, 8)).toThrow();
+  });
+  it("should not allow negative numbers to be picked", () => {
+    expect(() => pickManyDistinct(items, -1)).toThrow();
   });
 });

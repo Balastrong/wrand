@@ -19,3 +19,9 @@ export const flatten = <T>(items: WeightedItem<T>[]): WeightedItem<T>[] => {
 
   return [...map.entries()].map(([original, weight]) => ({ original, weight }));
 };
+
+export const pickManyDistinct = <T>(
+  items: WeightedItem<T>[],
+  amount: number,
+  options?: Options
+) => new RandomPicker(items, options).pickManyDistinct(amount);
