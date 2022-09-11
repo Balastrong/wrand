@@ -23,9 +23,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - name: Run tests
-      run: npm run test
-    - uses: codecov/codecov-action@v3
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        verbose: true
+    - name: Checking format
+      run: npm run format:check
+    - name: Run lint
+      run: npm run lint
