@@ -1,4 +1,4 @@
-import { Options, RandomFn, WeightedItem } from "./types.ts";
+import { Options, WeightedItem } from "./types.ts";
 
 export class RandomPicker<T> {
   private totalWeight: number = 0;

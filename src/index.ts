@@ -1,5 +1,5 @@
 import { RandomPicker } from "./randomPicker";
-import { Options, RandomFn, WeightedItem } from "./types";
+import { Options, WeightedItem } from "./types";
 export { RandomPicker };
 
 export const pick = <T>(items: WeightedItem<T>[], options?: Options) =>
