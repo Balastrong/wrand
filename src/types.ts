@@ -9,3 +9,7 @@ export type Options = {
 };
 
 export type RandomFn = () => number;
+
+export type Random = {
+  next: RandomFn;
+};
