@@ -10,6 +10,6 @@ export type Options = {
 
 export type RandomFn = () => number;
 
-export type Random = {
-  next: RandomFn;
+export type RandomFunction = {
+  nextNumber: RandomFn;
 };
